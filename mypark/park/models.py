@@ -63,7 +63,7 @@ class PurchaseAdmin(admin.ModelAdmin):
 	list_display=('user', 'spaces','location','duration')
 	search_fields=('spaces','location')
 	list_filter=['spaces','location']
-	inlines=[PurchaseInline]
+	inlines=[LoInline]
 
 class CompanyAdmin(admin.ModelAdmin):
 	list_display=('name','location','space','service_type','payment_mode','date')
