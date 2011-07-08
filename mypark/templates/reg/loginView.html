@@ -1,10 +1,12 @@
+
 {% if logged_in %}
-you are already logged in
-<a href='/reg/logout'>logout</a>
+	<p>You are already logged_in.Thanks</p>
+	<a href='/reg/logout'>logout</a>
 {% else %}
-<form action="." method="post">
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+	<p>Welcome, new user. Please login. </p>	
+	<form action="." method="post">
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+	</form>
 {%endif%}
 
