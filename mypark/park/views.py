@@ -1,13 +1,13 @@
 # Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
-from models import Blog, Comment
+from models import User, Purchase, Company, Administrator
 from django.forms import ModelForm
 from django.views.decorators.csrf import csrf_exempt
 from django import forms
 from django.contrib.auth import authenticate, login, logout
 
-def booking_detail(request):
+def booking_detail(request, id):
 	
 
 def purchase_detail(request):
