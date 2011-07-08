@@ -44,50 +44,30 @@ class Administrator(models.Model):
 	def __unicode__(self):
 		return str(self.location) +' on '+str(self.date)+': '+str(self.sold_spaces)
 
-class PurchaseInline(admin.TabularInline):
-	model=Purchase
-
-class CompanyInline(admin.TabularInline):
-	model=Company
-
-class UserInline(admin.TabularInline):
-	model=User
-     
-class LocationInline(admin.TabularInline):
-	model=Location
-
-class AdministratorInline(admin.TabularInline):
-	model=Administrator
-
 class PurchaseAdmin(admin.ModelAdmin):
 	list_display=('user', 'spaces','location','duration')
 	search_fields=('spaces','location')
 	list_filter=['spaces','location']
-	inlines=[LoInline]
 
 class CompanyAdmin(admin.ModelAdmin):
 	list_display=('name','location','space','service_type','payment_mode','date')
 	search_fields=('name','location','service_type','space')
 	list_filter=['name', 'location', 'service_type']
-	inlines=[CompanyInline]     
 
 class LocationAdmin(admin.ModelAdmin):
 	list_display=('location','address','no_spaces')
 	search_fields=('location','address','no_spaces')
 	list_filter=('location','address','no_spaces')
-	inlines=[LocationInline]
 
 class UserAdmin(admin.ModelAdmin):
 	list_display=('name','phone','pin')
 	search_fields=('name','pin','phone')
 	list_filter=['name']	
-	inlines=[UserInline]
 	
 class AdministratorAdmin(admin.ModelAdmin):
 	list_display=('location','date')
 	search_fields=('location','date')
 	list_filter=['location','date']
-	inlines=[AdministratorInline]
 	
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)
