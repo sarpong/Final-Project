@@ -3,17 +3,16 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-	<title>Parking_Space</title>
+	<title>Parking Space</title>
   </head>
   <body>
-	<a href=""><h1>Parking_Space</h1></a>
-	{% if logged_in %}
-	<a href="/reg/logout">login</a>
-	{% else %}
-	<a href="/reg/logout">logout</a>
-	{% endif %}
+	<a href=""><h1>Parking Space</h1></a>
+	<div id="content">
+
+	{% block content %}
 	
 	{% endblock %}
+	</div>
    </body>
 </html>
 
