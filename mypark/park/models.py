@@ -61,11 +61,14 @@ class CompanyAdmin(admin.ModelAdmin):
 	list_display=('name','location','space','service_type','payment_mode','date')
 	search_fields=('name','location'.'service_type','space')
 	list_filter=['name', 'loacation', 'service_type']
-     
+	inlines=[CompanyInline]     
+
 class UserAdmin(admin.ModelAdmin):
 	list_display=('name','phone','pin')
 	search_fields=('name','pin','phone')
 	list_filter=['name']	
+	inlines=[UserInline]
+
 	
 class AdministratorAmin(admin.ModelAmin):
 	list_display=('location','date')
