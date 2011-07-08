@@ -28,7 +28,7 @@ def loginView(request):
 			else:
 				return 'Your account has been disabled.'
 		else:
-			return 'Invalid username or password.'
+			return 'Invalid username or pin.'
 	form = LoginForm()
 	return render_to_response('reg/login.html', {'form': form, 'logged_in':request.user.is_authenticated()})
 
