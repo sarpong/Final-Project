@@ -20,18 +20,18 @@ def booking_detail(request, id):
 	pass
 
 def purchase_detail(request):
-	
-	if request.method == 'POST':
-		purchase = Purchase(request...)
-		form = PurchaseForm(request.POST, instance=purchase)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('park/confirmation')
-	else:
-		form = PurchaseForm()
-	t = loader.get_template('park/purchase.html')
-	c = Context({'location':location,'spaces':spaces,'duration':duration,'user':user})
-	return HttpResponse(t.render(c))
+	pass
+#	if request.method == 'POST':
+#		purchase = Purchase(request...)
+#		form = PurchaseForm(request.POST, instance=purchase)
+#		if form.is_valid():
+#			form.save()
+#			return HttpResponseRedirect('park/confirmation')
+#	else:
+#		form = PurchaseForm()
+#	t = loader.get_template('park/purchase.html')
+#	c = Context({'location':location,'spaces':spaces,'duration':duration,'user':user})
+#	return HttpResponse(t.render(c))
 
 def contact_us(request):
 	pass
