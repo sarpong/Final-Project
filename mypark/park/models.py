@@ -32,34 +32,53 @@ class Company(models.Model):
 	def __unicode__(self):
 		return self.name+" , "+self.location+" , "+self.service+" , "+str(self.space)+" , "+self.payment_mode+" , "+str(self.date)
 
-class Admin(models.Model):
+class Adminstrator(models.Model):
 	sold_spaces=models.IntegerField()
 	location=models.CharField(max_length=100)
 	date=models.DateTimeField(auto_now=True)
 
 
 
-#class PurchaseInline(admin.TabularInline):
-      #model=Purchase
+class PurchaseInline(admin.TabularInline):
+	model=Purchase
+     
+
+class CompanyInline(admin.TabularInline):
+	model=Company
+
+class UserInline(admin.TabularInline):
+	model=User
+     
      
 
 class PurchaseAdmin(admin.ModelAdmin):
-	pass
-      #list_display=('user', 'spaces','location','duration')
-      #search_fields=('spaces','location')
-      #list_filter=['spaces','location']
-      #inlines=[PurchaseInline]
+	list_display=('user', 'spaces','location','duration')
+	search_fields=('spaces','location')
+	list_filter=['spaces','location']
+	inlines=[PurchaseInline]
 
 class CompanyAdmin(admin.ModelAdmin):
-      #list_display=('name','location','space','service_type','payment_mode','date')
-      #search_fields=('name','location'.'service_type','space')
-      #list_filter=[]
-     
+	list_display=('name','location','space','service_type','payment_mode','date')
+	search_fields=('name','location'.'service_type','space')
+	list_filter=['name', 'loacation', 'service_type']
+	inlines=[CompanyInline]     
+
 class UserAdmin(admin.ModelAdmin):
-	pass 
+	list_display=('name','phone','pin')
+	search_fields=('name','pin','phone')
+	list_filter=['name']	
+	inlines=[UserInline]
+
+	
+class AdministratorAmin(admin.ModelAmin):
+	list_display=('location','date')
+	search_fields=('location','date')
+	list_filter=['location','date']	
+	
 
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)
 admin.site.register(User,UserAdmin)
+admin.site.register(Administrator,AdministratorAdmin)
 
 
