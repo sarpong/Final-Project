@@ -14,7 +14,7 @@ class PurchaseForm(ModelForm):
 		exclude = ['user','location']
 
 class ContactForm(ModelForm):
-	class Meta:
+	class Meta:		
 		model = Company
 
 def book_spots(request, id):
@@ -22,21 +22,20 @@ def book_spots(request, id):
 
 @csrf_exempt
 def purchase_spots(request, loc_id):
-	print loc_id
 	loc = Location.objects.get(pk=loc_id)
-	purchase = Purchase.objects.get(pk=loc_id)
+	purchase = Purchase(location=loc)
 	if request.method == 'POST':
-		purchase = Purchase(user=request.user.username, location=loc)
-		form = PurchaseForm(request.POST)
+		form = PurchaseForm(request.POST, instance=purchase)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('park/confirmation')
+			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
-	c = Context({'location':loc.location, 'spaces':purchase.spaces, 'duration':purchase.duration})
+	c = Context({'form':form.as_p(),'location':loc.location, 'user':request.user})
 	return HttpResponse(t.render(c))
 
+@csrf_exempt
 def contact_us(request):
 	company = Company.objects.all()
 	if request.method == 'POST':
@@ -48,7 +47,7 @@ def contact_us(request):
 	else:
 		form = ContactForm()
 	t = loader.get_template('park/contact.html')
-	c = Context({})
+	c = Context({'form':form.as_p()})
 	return HttpResponse(t.render(c))
 
 def park_search(request, term):
@@ -60,11 +59,10 @@ def park_search(request, term):
 def park_admin(request):
 	pass
 
-def park_confirm(request, loc_id):
-	loc = Location.objects.get(pk=loc_id)
-	purchase = Purchase.objects.get(pk=loc_id)
+def park_confirm(request, pur_id):
+	purchase = Purchase.objects.get(pk=pur_id)
 	t = loader.get_template('park/confirmation.html')
-	c = Context({'location':loc.location, 'name':request.user.username, 'spaces':purchase.spaces, 'duration':purchase.duration, 'date':purchase.date, 'time':purchase.time})
+	c = Context({'location':purchase.location, 'name':request.user, 'spaces':purchase.spaces, 'duration':purchase.duration, 'date':purchase.date, 'time':purchase.time})
 	return HttpResponse(t.render(c))
 
 def home(request):
