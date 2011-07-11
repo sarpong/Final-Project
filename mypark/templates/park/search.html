@@ -1,7 +1,7 @@
 {% extends "park/base.html" %}
 {%  block content %}
   {% for found in loc_list %}
-       <a>{{ found }}, {{ found.no_available}}</a><br/>
+       <a href='/park/purchase/{{found.id}}'>{{ found }}, {{ found.no_available}}</a><br/>
   {% endfor %}   
 {% endblock %}
 
