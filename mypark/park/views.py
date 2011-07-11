@@ -1,7 +1,7 @@
 # Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
-from models import User, Purchase, Company, Administrator
+from models import User, Purchase, Company, Administrator, Location
 from django.forms import ModelForm
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
@@ -18,7 +18,6 @@ def book_spots(request, id):
 
 @csrf_exempt
 def purchase_spots(request, loc_id):
-	print loc_id
 	loc = Location.objects.get(pk=loc_id)
 	if request.method == 'POST':
 		purchase = Purchase(user=request.user.username, location=loc)
@@ -37,8 +36,6 @@ def contact_us(request):
 
 def park_search(request, term):
 	loc_list = Location.objects.filter(location__icontains=term)
-	for found in loc_list:
-		print found.location, found.address, found.no_available
 	f = loader.get_template('park/search.html')
 	g = Context({'loc_list':loc_list,'term':term})
 	return HttpResponse(f.render(g))

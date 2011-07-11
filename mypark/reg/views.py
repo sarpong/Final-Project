@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response
 
 class LoginForm(forms.Form):
 	username = forms.CharField()
-	pin = forms.IntegerField(widget=forms.PasswordInput)
+	password = forms.CharField(widget=forms.PasswordInput)
 
 #class SignupForm(forms.Form):
 #	name = forms.CharField()
@@ -20,15 +20,15 @@ class LoginForm(forms.Form):
 def loginView(request):
 	if request.method == 'POST':
 		usname = request.POST['username']
-		pin_num = request.POST['pin']
-		user = authenticate(username = usname, pin = pin_num)
+		psword = request.POST['password']
+		user = authenticate(username = usname, password = psword)
 		if user is not None:
 			if user.is_active:
 				login(request, user)
 			else:
 				return HttpResponse('Your account has been disabled.')
 		else:
-			return HttpResponse('Invalid username or pin.')
+			return HttpResponse('Invalid username or password.')
 	form = LoginForm()
 	return render_to_response('reg/loginView.html', {'form': form, 'logged_in':request.user.is_authenticated()})
 
