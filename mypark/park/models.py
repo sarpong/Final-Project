@@ -43,9 +43,10 @@ class Company(models.Model):
 		return self.name
 
 class Administrator(models.Model):
-	sold_spaces=models.IntegerField()
+	sum_available=models.IntegerField()
 	location=models.ForeignKey(Location)
 	date=models.DateTimeField(auto_now=True)
+	available=models.BooleanField()
 	def __unicode__(self):
 		return str(self.location) +' on '+str(self.date)
 
@@ -70,17 +71,19 @@ class UserAdmin(admin.ModelAdmin):
 	list_filter=['name']	
 	
 class AdministratorAdmin(admin.ModelAdmin):
-	list_display=('location','sold_spaces','date')
-	search_fields=('location','sold_spaces','date')
-	list_filter=['location','sold_spaces','date']
+	list_display=('location','sum_available','date','available')
+	search_fields=('location','sum_available','date','available')
+	list_filter=['location','sum_available','date','available']
 
 class PaymentModeAdmin(admin.ModelAdmin):
 	list_display=['payment_type']
+	search_fields=['payment_type']
+	list_filter=['payment_type']
 	
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Administrator,AdministratorAdmin)
 admin.site.register(Location,LocationAdmin)
-admin.site.register(PaymentMode,PaymentModeLocationAdmin)
+admin.site.register(PaymentMode,PaymentModeAdmin)
 
