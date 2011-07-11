@@ -34,9 +34,10 @@ def purchase_spots(request, loc_id):
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
-	c = Context({'location':loc.location, 'spaces':purchase.spaces, 'duration':purchase.duration})
+	c = Context({'form':form.as_p(),'location':loc.location, 'spaces':purchase.spaces, 'duration':purchase.duration})
 	return HttpResponse(t.render(c))
 
+@csrf_exempt
 def contact_us(request):
 	company = Company.objects.all()
 	if request.method == 'POST':
@@ -48,7 +49,7 @@ def contact_us(request):
 	else:
 		form = ContactForm()
 	t = loader.get_template('park/contact.html')
-	c = Context({})
+	c = Context({'form':form.as_p()})
 	return HttpResponse(t.render(c))
 
 def park_search(request, term):

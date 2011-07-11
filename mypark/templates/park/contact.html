@@ -1,16 +1,9 @@
 {% extends "park/base.html" %}
 {% block content %}
 
- 	<div>Company_Name:{{ company.name }}
-	<div>Location:{{ company.location }}
-	<div>Service_type:{{ company.service_type }}
-	<div>Payment_mode:{{ company.pay_mode }}
-	<div>Phone_Number:{{ company.phone }}
-	<div>Date_Created:{{ company.date }}
-		
+	<div>
 		<form method='post' action="">
 		{{ form }}
 		<input type='submit' name='Submit'>
-	</form>
-   
+	</form></div>
 {% endblock %}

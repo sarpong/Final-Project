@@ -8,14 +8,14 @@ class User(models.Model):
 	email=models.EmailField()
 	pin=models.IntegerField()
 	def __unicode__(self):
-		return self.name+ " , "+str(self.pin)
+		return self.name
 
 class Location(models.Model):
 	location = models.CharField(max_length=60)
 	address=models.CharField(max_length=60)
 	no_available=models.IntegerField()
 	def __unicode__(self):
-		return self.location+' at '+self.address
+		return self.location
 
 class Purchase(models.Model):
 	spaces=models.IntegerField()
@@ -24,26 +24,30 @@ class Purchase(models.Model):
 	date=models.DateField(auto_now=True)
 	time=models.TimeField(auto_now=True)
 	def __unicode__(self):
-		return str(self.spaces)+" , "+str(self.location)+" , "+str(self.duration)
+		return str(self.location)+": "+str(self.spaces)+" , "+str(self.duration)+' hours.'
+
+class PaymentMode(models.Model):
+	payment_type = models.CharField(max_length=60)
+	def __unicode__(self):
+		return self.payment_type
 
 class Company(models.Model):
-	name=models.CharField(max_length=100)
-	location=models.ForeignKey(Location)
-	service_type=models.CharField(max_length=40)
-	payment_mode=models.CharField(max_length=40)
+	name=models.CharField(max_length=60)
+	location=models.CharField(max_length=100)
+	payment_mode=models.ForeignKey(PaymentMode)
 	phone=models.CharField(max_length=40)
 	email=models.EmailField()
 	date=models.DateField(auto_now_add=True)
-	space=models.IntegerField()
+	spaces=models.IntegerField()
 	def __unicode__(self):
-		return self.name+" , "+str(self.location)+" , "+self.service_type+" , "+str(self.space)+" , "+self.payment_mode+" , "+str(self.date)
+		return self.name
 
 class Administrator(models.Model):
 	sold_spaces=models.IntegerField()
 	location=models.ForeignKey(Location)
 	date=models.DateTimeField(auto_now=True)
 	def __unicode__(self):
-		return str(self.location) +' on '+str(self.date)+': '+str(self.sold_spaces)
+		return str(self.location) +' on '+str(self.date)
 
 class PurchaseAdmin(admin.ModelAdmin):
 	list_display=('spaces','location','duration','date','time')
@@ -51,9 +55,9 @@ class PurchaseAdmin(admin.ModelAdmin):
 	list_filter=['spaces','location','date','time']
 
 class CompanyAdmin(admin.ModelAdmin):
-	list_display=('name','location','space','service_type','payment_mode','date')
-	search_fields=('name','location','service_type','space')
-	list_filter=['name', 'location', 'service_type']
+	list_display=('name','location','spaces','payment_mode','date')
+	search_fields=('name','location','spaces')
+	list_filter=['name', 'location']
 
 class LocationAdmin(admin.ModelAdmin):
 	list_display=('location','address','no_available')
@@ -69,10 +73,14 @@ class AdministratorAdmin(admin.ModelAdmin):
 	list_display=('location','sold_spaces','date')
 	search_fields=('location','sold_spaces','date')
 	list_filter=['location','sold_spaces','date']
+
+class PaymentModeAdmin(admin.ModelAdmin):
+	list_display=['payment_type']
 	
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Administrator,AdministratorAdmin)
 admin.site.register(Location,LocationAdmin)
+admin.site.register(PaymentMode,PaymentModeLocationAdmin)
 
