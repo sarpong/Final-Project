@@ -7,6 +7,6 @@ urlpatterns = patterns('',
 	url(r'^contactus/$', 'park.views.contact_us'),
 	url(r'^search/(.*)$', 'park.views.park_search'),
 	url(r'^Admin/$', 'park.views.park_admin'),
-	url(r'^confirmation/(?P<id>\d+)?$', 'park.views.park_confirmation'),
+	url(r'^confirmation/(?P<loc_id>\d+)?$', 'park.views.park_confirm'),
 )
 

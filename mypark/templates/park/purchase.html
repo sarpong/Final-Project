@@ -1,10 +1,12 @@
 {% extends "park/base.html"%}
 {% block content %}
 	<ul>
-	  <div>User:{{ purcahse.user }}</div>
-	  <div>No_of_Spaces:{{ purchase.spaces }}</div>
-	  <div>Duration:{{ purchase.duration }}</div>
-	  <div>Location:{{ purchase.location}}</div>
+	<h3>Purchase a parking space</h3>
+	
+	  <div>User: 		 {{ user }}</div>
+	  <div>No of Spaces: {{ spaces }} parking spots</div>
+	  <div>Duration: 	 {{ duration }} hours</div>
+	  <div>Location:	 {{ location }}</div>
 	  <div>
 	  		<form method='post' action="">
 				{{ form }}

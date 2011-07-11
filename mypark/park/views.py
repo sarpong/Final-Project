@@ -13,12 +13,17 @@ class PurchaseForm(ModelForm):
 		model = Purchase
 		exclude = ['user','location']
 
+class ContactForm(ModelForm):
+	class Meta:
+		model = Company
+
 def book_spots(request, id):
 	pass
 
 @csrf_exempt
 def purchase_spots(request, loc_id):
 	loc = Location.objects.get(pk=loc_id)
+	purchase = Purchase.objects.get(pk=loc_id)
 	if request.method == 'POST':
 		purchase = Purchase(user=request.user.username, location=loc)
 		form = PurchaseForm(request.POST)
@@ -28,11 +33,22 @@ def purchase_spots(request, loc_id):
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
-	c = Context({'location':location,'spaces':spaces,'duration':duration,'user':user})
+	c = Context({'location':loc.location, 'spaces':purchase.spaces, 'duration':purchase.duration})
 	return HttpResponse(t.render(c))
 
 def contact_us(request):
-	pass
+	company = Company.objects.all()
+	if request.method == 'POST':
+		company = Company()
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponse('Your company has been registered. \nWe would get back to you soon.')
+	else:
+		form = ContactForm()
+	t = loader.get_template('park/contact.html')
+	c = Context({})
+	return HttpResponse(t.render(c))
 
 def park_search(request, term):
 	loc_list = Location.objects.filter(location__icontains=term)
@@ -43,8 +59,12 @@ def park_search(request, term):
 def park_admin(request):
 	pass
 
-def park_confirmation(request):
-	pass
+def park_confirm(request, loc_id):
+	loc = Location.objects.get(pk=loc_id)
+	purchase = Purchase.objects.get(pk=loc_id)
+	t = loader.get_template('park/confirmation.html')
+	c = Context({'location':loc.location, 'name':request.user.username, 'spaces':purchase.spaces, 'duration':purchase.duration, 'date':purchase.date, 'time':purchase.time})
+	return HttpResponse(t.render(c))
 
 def home(request):
 	t = loader.get_template('park/base.html')

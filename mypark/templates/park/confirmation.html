@@ -1,17 +1,16 @@
 {% extends "park/base.html" %}
 {% block content %}
 
- 	<div>Name: {{ purchase.name }}</div>
-        <div>Location_assigned: {{ purchase.location }}</div>
-	<div>Space_assigned: {{ purchase.spaces }}</div>
-	<div>Date: {{ purchase.date }}</div>
+ 	<div>Name: {{ name }}</div>
+    <div>Location assigned: {{ location }}</div>
+	<div>Space assigned: {{ spaces }}</div>
+	<div>Duration: {{ duration }} hours</div>
+	<div>Date of Purchase: {{ date }}</div>
+	<div>Time of Purchase: {{ time }} </div>
 	  
-	<form method='post' action="">
-{{ form }}
-<input type='submit' name='Submit'>
-</form>
-
-
-
+		<form method='post' action="">
+		{{ form }}
+		<input type='submit' name='Submit'>
+	</form>
 {%endblock%}
 

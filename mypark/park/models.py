@@ -18,10 +18,11 @@ class Location(models.Model):
 		return self.location+' at '+self.address
 
 class Purchase(models.Model):
-	user=models.ForeignKey(User)
 	spaces=models.IntegerField()
 	location=models.ForeignKey(Location)
 	duration=models.IntegerField()
+	date=models.DateField(auto_now=True)
+	time=models.TimeField(auto_now=True)
 	def __unicode__(self):
 		return str(self.spaces)+" , "+str(self.location)+" , "+str(self.duration)
 
@@ -45,9 +46,9 @@ class Administrator(models.Model):
 		return str(self.location) +' on '+str(self.date)+': '+str(self.sold_spaces)
 
 class PurchaseAdmin(admin.ModelAdmin):
-	list_display=('user', 'spaces','location','duration')
-	search_fields=('spaces','location')
-	list_filter=['spaces','location']
+	list_display=('spaces','location','duration','date','time')
+	search_fields=('spaces','location','date','time')
+	list_filter=['spaces','location','date','time']
 
 class CompanyAdmin(admin.ModelAdmin):
 	list_display=('name','location','space','service_type','payment_mode','date')
