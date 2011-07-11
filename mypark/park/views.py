@@ -1,7 +1,7 @@
 # Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
-from models import User, Purchase, Company, Administrator, Location
+from models import User, Purchase, Company, Administrator,Location
 from django.forms import ModelForm
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
@@ -22,6 +22,7 @@ def book_spots(request, id):
 
 @csrf_exempt
 def purchase_spots(request, loc_id):
+	print loc_id
 	loc = Location.objects.get(pk=loc_id)
 	purchase = Purchase.objects.get(pk=loc_id)
 	if request.method == 'POST':
