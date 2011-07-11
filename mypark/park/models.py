@@ -12,10 +12,9 @@ class User(models.Model):
 
 class Location(models.Model):
 	location = models.CharField(max_length=60)
-	no_spaces=models.IntegerField()
 	address=models.CharField(max_length=60)
 	def __unicode__(self):
-		return self.location+' at '+self.address +': '+ str(self.no_spaces)
+		return self.location+' at '+self.address
 
 class Purchase(models.Model):
 	user=models.ForeignKey(User)
@@ -35,7 +34,7 @@ class Company(models.Model):
 	date=models.DateField(auto_now_add=True)
 	space=models.IntegerField()
 	def __unicode__(self):
-		return self.name+" , "+str(self.location)+" , "+self.service+" , "+str(self.space)+" , "+self.payment_mode+" , "+str(self.date)
+		return self.name+" , "+str(self.location)+" , "+self.service_type+" , "+str(self.space)+" , "+self.payment_mode+" , "+str(self.date)
 
 class Administrator(models.Model):
 	sold_spaces=models.IntegerField()
@@ -55,9 +54,9 @@ class CompanyAdmin(admin.ModelAdmin):
 	list_filter=['name', 'location', 'service_type']
 
 class LocationAdmin(admin.ModelAdmin):
-	list_display=('location','address','no_spaces')
-	search_fields=('location','address','no_spaces')
-	list_filter=('location','address','no_spaces')
+	list_display=('location','address')
+	search_fields=('location','address')
+	list_filter=('location','address')
 
 class UserAdmin(admin.ModelAdmin):
 	list_display=('name','phone','pin')
