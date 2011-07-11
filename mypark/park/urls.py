@@ -2,6 +2,8 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
 	url(r'^$', 'park.views.home'),
+	url(r'^home/$', 'park.views.homepage'),
+	url(r'^list/$', 'park.views.loc_list'),
 	url(r'^purchase/(?P<loc_id>\d+)?$', 'park.views.purchase_spots'),
 	url(r'^booking/(?P<loc_id>\d+)?$', 'park.views.book_spots'),
 	url(r'^contactus/$', 'park.views.contact_us'),

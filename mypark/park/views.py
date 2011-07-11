@@ -14,11 +14,17 @@ class PurchaseForm(ModelForm):
 		exclude = ['user','location']
 
 class ContactForm(ModelForm):
-	class Meta:		
+	class Meta:
 		model = Company
 
 def book_spots(request, id):
 	pass
+
+def loc_list(request):
+	location_list = Location.objects.all()
+	t = loader.get_template('park/list.html')
+	c = Context({'loc_list':location_list})
+	return HttpResponse(t.render(c))
 
 @csrf_exempt
 def purchase_spots(request, loc_id):
@@ -70,3 +76,7 @@ def home(request):
 	c = Context(dict())
 	return HttpResponse(t.render(c))
 
+def homepage(request):
+	t = loader.get_template('park/home.html')
+	c = Context(dict())
+	return HttpResponse(t.render(c))
