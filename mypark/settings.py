@@ -123,11 +123,7 @@ INSTALLED_APPS = (
 	'park',
 	'reg',
     'django.contrib.admin',
-<<<<<<< HEAD
     'django_evolution',
-=======
-	'django_evolution',
->>>>>>> 8e14a79ab91fa358133a554786c22f9bb42a5499
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
