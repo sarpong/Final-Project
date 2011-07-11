@@ -37,8 +37,6 @@ def contact_us(request):
 
 def park_search(request, term):
 	loc_list = Location.objects.filter(location__icontains=term)
-	for found in loc_list:
-		print found.location, found.address, found.no_available
 	f = loader.get_template('park/search.html')
 	g = Context({'loc_list':loc_list,'term':term})
 	return HttpResponse(f.render(g))
