@@ -1,14 +1,15 @@
 from django.db import models
 from django.contrib import admin
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
-	name=models.CharField(max_length=60)
+class UserProfile(models.Model):
+	user = models.OneToOneField(User)
 	phone=models.CharField(max_length=40)
 	email=models.EmailField()
 	pin=models.IntegerField()
 	def __unicode__(self):
-		return self.name
+		return self.email
 
 class Location(models.Model):
 	location = models.CharField(max_length=60)
@@ -65,10 +66,10 @@ class LocationAdmin(admin.ModelAdmin):
 	search_fields=('location','address','no_available')
 	list_filter=('location','address','no_available')
 
-class UserAdmin(admin.ModelAdmin):
-	list_display=('name','phone','pin')
-	search_fields=('name','pin','phone')
-	list_filter=['name']	
+class UserProfileAdmin(admin.ModelAdmin):
+	list_display=('phone','pin')
+	search_fields=('pin','phone')
+#	list_filter=['phone','pin']	
 	
 class AdministratorAdmin(admin.ModelAdmin):
 	list_display=('location','sum_available','date','available')
@@ -82,7 +83,7 @@ class PaymentModeAdmin(admin.ModelAdmin):
 	
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)
-admin.site.register(User,UserAdmin)
+admin.site.register(UserProfile,UserProfileAdmin)
 admin.site.register(Administrator,AdministratorAdmin)
 admin.site.register(Location,LocationAdmin)
 admin.site.register(PaymentMode,PaymentModeAdmin)
