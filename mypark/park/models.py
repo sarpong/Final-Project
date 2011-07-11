@@ -65,9 +65,9 @@ class UserAdmin(admin.ModelAdmin):
 	list_filter=['name']	
 	
 class AdministratorAdmin(admin.ModelAdmin):
-	list_display=('location','date')
-	search_fields=('location','date')
-	list_filter=['location','date']
+	list_display=('location','sold_spaces','date')
+	search_fields=('location','sold_spaces','date')
+	list_filter=['location','sold_spaces','date']
 	
 admin.site.register(Purchase,PurchaseAdmin)
 admin.site.register(Company,CompanyAdmin)

@@ -1,7 +1,7 @@
 # Create your views here.
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
-from models import User, Purchase, Company, Administrator,Location
+from models import User, Purchase, Company, Administrator
 from django.forms import ModelForm
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
