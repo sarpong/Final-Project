@@ -11,33 +11,37 @@ from django.contrib.auth import authenticate, login, logout
 class PurchaseForm(ModelForm):
 	class Meta:
 		model = Purchase
+		exclude = ['user','location']
 
-class PurchaseForm(ModelForm):
-	class Meta:
-		model = Purchase
-
-def booking_detail(request, id):
+def book_spots(request, id):
 	pass
 
-def purchase_detail(request):
-	pass
-#	if request.method == 'POST':
-#		purchase = Purchase(request...)
-#		form = PurchaseForm(request.POST, instance=purchase)
-#		if form.is_valid():
-#			form.save()
-#			return HttpResponseRedirect('park/confirmation')
-#	else:
-#		form = PurchaseForm()
-#	t = loader.get_template('park/purchase.html')
-#	c = Context({'location':location,'spaces':spaces,'duration':duration,'user':user})
-#	return HttpResponse(t.render(c))
+@csrf_exempt
+def purchase_spots(request, loc_id):
+	print loc_id
+	loc = Location.objects.get(pk=loc_id)
+	if request.method == 'POST':
+		purchase = Purchase(user=request.user.username, location=loc)
+		form = PurchaseForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('park/confirmation')
+	else:
+		form = PurchaseForm()
+	t = loader.get_template('park/purchase.html')
+	c = Context({'location':location,'spaces':spaces,'duration':duration,'user':user})
+	return HttpResponse(t.render(c))
 
 def contact_us(request):
 	pass
 
-def park_search(request):
-	pass
+def park_search(request, term):
+	loc_list = Location.objects.filter(location__icontains=term)
+	for found in loc_list:
+		print found.location, found.address, found.no_available
+	f = loader.get_template('park/search.html')
+	g = Context({'loc_list':loc_list,'term':term})
+	return HttpResponse(f.render(g))
 
 def park_admin(request):
 	pass

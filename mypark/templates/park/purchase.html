@@ -1,12 +1,16 @@
 {% extends "park/base.html"%}
 {% block content %}
-
-
-	<ul> 
+	<ul>
 	  <div>User:{{ purcahse.user }}</div>
 	  <div>No_of_Spaces:{{ purchase.spaces }}</div>
 	  <div>Duration:{{ purchase.duration }}</div>
 	  <div>Location:{{ purchase.location}}</div>
+	  <div>
+	  		<form method='post' action="">
+				{{ form }}
+				<input type='submit' name='Submit'>
+			</form>
+	  </div>
 	</ul>
 
 {% endblock %}

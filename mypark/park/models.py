@@ -13,6 +13,7 @@ class User(models.Model):
 class Location(models.Model):
 	location = models.CharField(max_length=60)
 	address=models.CharField(max_length=60)
+	no_available=models.IntegerField()
 	def __unicode__(self):
 		return self.location+' at '+self.address
 
@@ -54,9 +55,9 @@ class CompanyAdmin(admin.ModelAdmin):
 	list_filter=['name', 'location', 'service_type']
 
 class LocationAdmin(admin.ModelAdmin):
-	list_display=('location','address')
-	search_fields=('location','address')
-	list_filter=('location','address')
+	list_display=('location','address','no_available')
+	search_fields=('location','address','no_available')
+	list_filter=('location','address','no_available')
 
 class UserAdmin(admin.ModelAdmin):
 	list_display=('name','phone','pin')

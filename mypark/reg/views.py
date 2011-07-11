@@ -11,10 +11,10 @@ class LoginForm(forms.Form):
 	username = forms.CharField()
 	pin = forms.IntegerField(widget=forms.PasswordInput)
 
-class SignupForm(forms.Form):
-	name = forms.CharField()
-	username = forms.CharField()
-	phone = forms.IntegerField()
+#class SignupForm(forms.Form):
+#	name = forms.CharField()
+#	username = forms.CharField()
+#	phone = forms.IntegerField()
 
 @csrf_exempt
 def loginView(request):
@@ -26,30 +26,14 @@ def loginView(request):
 			if user.is_active:
 				login(request, user)
 			else:
-				return 'Your account has been disabled.'
+				return HttpResponse('Your account has been disabled.')
 		else:
-			return 'Invalid username or pin.'
+			return HttpResponse('Invalid username or pin.')
 	form = LoginForm()
-	return render_to_response('reg/login.html', {'form': form, 'logged_in':request.user.is_authenticated()})
-
-@csrf_exempt
-def signupView(request):
-	if request.method == 'POST':
-		usname = request.POST['username']
-		pin_num = request.POST['pin']
-		user = authenticate(username = usname, pin = pin_num)
-		if user is not None:
-			if user.is_active:
-				login(request, user)
-			else:
-				return 'Your account has been disabled.'
-		else:
-			return 'Invalid username or password.'
-	form = LoginForm()
-	return render_to_response('reg/signup.html', {'form': form, 'signed_up':request.user.is_authenticated()})
+	return render_to_response('reg/loginView.html', {'form': form, 'logged_in':request.user.is_authenticated()})
 
 @csrf_exempt
 def logoutView(request):
 	logout(request)
-	return render_to_response('reg/logout.html')
+	return render_to_response('reg/logoutView.html')
 
