@@ -38,7 +38,7 @@ def purchase_spots(request, loc_id):
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
-	c = Context({'form':form.as_p(),'location':loc.location, 'user':request.user})
+	c = Context({'form':form.as_p(),'location':loc.location, 'user':request.user.userprofile.name, 'email':request.user.userprofile.email, 'phone':request.user.userprofile.phone})
 	return HttpResponse(t.render(c))
 
 @csrf_exempt
@@ -68,7 +68,7 @@ def park_admin(request):
 def park_confirm(request, pur_id):
 	purchase = Purchase.objects.get(pk=pur_id)
 	t = loader.get_template('park/confirmation.html')
-	c = Context({'location':purchase.location, 'name':request.user, 'spaces':purchase.spaces, 'duration':purchase.duration, 'date':purchase.date, 'time':purchase.time})
+	c = Context({'location':purchase.location, 'name':request.user.userprofile.name, 'spaces':purchase.spaces, 'duration':purchase.duration, 'date':purchase.date, 'time':purchase.time})
 	return HttpResponse(t.render(c))
 
 def home(request):

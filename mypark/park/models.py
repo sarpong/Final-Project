@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
+	name = models.CharField(max_length=60)
 	phone=models.CharField(max_length=40)
 	email=models.EmailField()
 	pin=models.IntegerField()
 	def __unicode__(self):
-		return self.email
+		return self.name
 
 class Location(models.Model):
 	location = models.CharField(max_length=60)
@@ -67,9 +68,9 @@ class LocationAdmin(admin.ModelAdmin):
 	list_filter=('location','address','no_available')
 
 class UserProfileAdmin(admin.ModelAdmin):
-	list_display=('phone','pin')
-	search_fields=('pin','phone')
-#	list_filter=['phone','pin']	
+	list_display=('name','phone','pin','email')
+	search_fields=('name','pin','phone','email')
+#	list_filter=['phone','pin']
 	
 class AdministratorAdmin(admin.ModelAdmin):
 	list_display=('location','sum_available','date','available')
