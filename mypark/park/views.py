@@ -41,9 +41,6 @@ def purchase_spots(request, loc_id):
 		print purchase.duration
 		print
 		print startTime, endTime
-		loc.no_available -= 1
-		while nowTime == endTime - startTime:
-		
 	if request.method == 'POST':
 		form = PurchaseForm(request.POST)
 		if form.is_valid():
