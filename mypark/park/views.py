@@ -38,6 +38,9 @@ def purchase_spots(request, loc_id):
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
+	print 'hello'
+	print type(request.user.userprofile)
+	print 'hello'
 	c = Context({'form':form.as_p(),'location':loc.location, 'user':request.user.userprofile.name, 'email':request.user.userprofile.email, 'phone':request.user.userprofile.phone})
 	return HttpResponse(t.render(c))
 
