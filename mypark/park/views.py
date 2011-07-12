@@ -13,7 +13,7 @@ import time
 class PurchaseForm(ModelForm):
 	class Meta:
 		model = Purchase
-		exclude = ['user','location']
+		exclude = ['location']
 
 class ContactForm(ModelForm):
 	class Meta:
@@ -42,9 +42,14 @@ def purchase_spots(request, loc_id):
 		print
 		print startTime, endTime
 	if request.method == 'POST':
-		form = PurchaseForm(request.POST)
+		purchase = Purchase(location=loc)
+		form = PurchaseForm(request.POST, instance=purchase)
+
 		if form.is_valid():
+			print form
+
 			form.save()
+
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
 	else:
 		form = PurchaseForm()
