@@ -7,6 +7,8 @@ from django import forms
 from django.views.decorators.csrf import csrf_exempt
 from django import forms
 from django.contrib.auth import authenticate, login, logout
+from time import mktime
+import time
 
 class PurchaseForm(ModelForm):
 	class Meta:
@@ -29,9 +31,21 @@ def loc_list(request):
 @csrf_exempt
 def purchase_spots(request, loc_id):
 	loc = Location.objects.get(pk=loc_id)
-	purchase = Purchase(location=loc)
+	purchases = Purchase.objects.filter(location=loc)
+	nowTime = time.time()
+	print nowTime
+	for purchase in purchases:
+		print purchase.date
+		startTime = mktime(purchase.date.timetuple())
+		endTime = startTime + 60*60*purchase.duration
+		print purchase.duration
+		print
+		print startTime, endTime
+		loc.no_available -= 1
+		while nowTime == endTime - startTime:
+		
 	if request.method == 'POST':
-		form = PurchaseForm(request.POST, instance=purchase)
+		form = PurchaseForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
@@ -75,11 +89,11 @@ def park_confirm(request, pur_id):
 	return HttpResponse(t.render(c))
 
 def home(request):
-	t = loader.get_template('park/base.html')
-	c = Context(dict())
-	return HttpResponse(t.render(c))
-
-def homepage(request):
 	t = loader.get_template('park/home.html')
 	c = Context(dict())
 	return HttpResponse(t.render(c))
+
+#def homepage(request):
+#	t = loader.get_template('park/home.html')
+#	c = Context(dict())
+#	return HttpResponse(t.render(c))

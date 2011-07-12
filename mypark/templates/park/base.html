@@ -3,12 +3,60 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
+
 	<title>Parking Space</title>
 
+<style type="text/css">
+body
+{
+background-color:#b0c4de;
+width:100%
+}
+h1
+{
+color:red;
+text-align:center;
+}
+a
+{
+text-align:center;
+}
+
+div {
+/*    background: none repeat scroll 0 0 #438786;*/
+    border-color: #CCCCCC #CCCCCC #438786;
+    color: white;
+    filter: none;
+    overflow: hidden;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    background: -moz-linear-gradient(center top , #E2E2E2, #FFFFFF) repeat scroll 0 0 transparent;
+    border-color: #FFFFFF #FFFFFF #D1D1D1;
+    border-style: solid;
+    border-width: 1px;
+    color: #D81209;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+
+}
+</style>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel='stylesheet' href='base.css' type='test/css' />
+	<title>Smart Park</title>
+>>>>>>> ee362edf70124adc19d4adcb382b39cffe00535e
   </head>
   <body>
-	<a href='/reg/logout'>logout</a>
-	<h1>Smart Park</h1>
+
+<div class="moduleTab">
+        <div class="tabText"><a href="park/list">Locations</a></div>
+        <div class="tabControls"></div>
+        <div class="clear"></div>
+    </div>
+	<h1><a target="_top" href="http://www.flamingtext.com/" ><img src="http://blog.flamingtext.com/blog/2011/07/12/flamingtext_com_1310477271_17322.png" border="0" alt="Image by FlamingText.com" title="Image by FlamingText.com"></a>
+<br/>
+</h1>
 	<div id="content">
 	{% block content %}
 	{% endblock %}
