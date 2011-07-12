@@ -44,6 +44,13 @@ class Company(models.Model):
 	def __unicode__(self):
 		return self.name
 
+#class Date(models.Models):
+#	day_purchase=models.IntegerField()
+#	month_purchase=models.IntegerField()
+#	year_purchase=models.IntegerField()
+#	def __unicode__(self):
+#		return self.day
+
 class Administrator(models.Model):
 	sum_available=models.IntegerField()
 	location=models.ForeignKey(Location)
@@ -71,7 +78,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 	list_display=('name','phone','pin','email')
 	search_fields=('name','pin','phone','email')
 #	list_filter=['phone','pin']
-	
+
 class AdministratorAdmin(admin.ModelAdmin):
 	list_display=('location','sum_available','date','available')
 	search_fields=('location','sum_available','date','available')
