@@ -48,9 +48,8 @@ def purchase_spots(request, loc_id):
 		print
 		print startTime, endTime
 
-
-	if request.method == 'POST':
-		form = PurchaseForm(request.POST)
+	if request.method == 'POST': 
+		form = PurchaseForm(request.POST,instance=purchase)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
