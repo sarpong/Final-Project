@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+<style type="text/css">
+body
+{
+background-color:#000000;
+width:100%;
+height:100%;
+font-family:"Arial";
+}
+h1
+{
+color:red;
+text-align:center;
+}
+a
+{
+vertical-align:center;
+text-align:center;
+}
+
+div {
+/*    background: none repeat scroll 0 0 #438786;*/
+    border-color: #CCCCCC #CCCCCC #438786;
+    color: white;
+    filter: none;
+    overflow: hidden;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    background: -moz-linear-gradient(center top , #E2E2E2, #FFFFFF) repeat scroll 0 0 transparent;
+    border-color: #FFCC00 #FFCC00 #FFCC00;
+    border-style: solid;
+    border-width: 1px;
+    color: brown;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+}
+.un_home_title {
+    background: -moz-linear-gradient(center top , #015294, #00335D) repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-size: small;
+	text-align:left;
+    padding: 3px 5px;
+}
+.un_home_pad {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: -moz-linear-gradient(center top , #FBF6F6, #E5E2E2) repeat scroll 0 0 transparent;
+    padding: 5px;
+}
+div.un_btm_dashed {
+    border-bottom: 1px dashed #A5BDD5;
+}
+p{
+	vertical-align:text-top;
+}
+</style>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel='stylesheet' href='base.css' type='test/css' />
+	<title>Smart Park</title>
+  </head>
+  <body>
+
+	<h1><a target="_top" href="http://www.flamingtext.com/" ><img src="http://blog.flamingtext.com/blog/2011/07/13/flamingtext_com_1310547125_28500.png" border="0" alt="Image by FlamingText.com" title="Image by FlamingText.com"></a>
+<br/>
+</h1>
+	<div id="content">
+	<div class="un_btm_dashed">
+	<div class="un_home_title">Contents</div>
+{% if logged_in %}
+	Welcome, {{ user }}
+	<a style="text-align:rignt; vertical-text-align:text-top; margin-right=1px;" href='/reg/logout'>logout</a>
+	<a href="/park/"><h1>Smart Park</h1></a><br/>
+{% else %}
+	<p>Welcome new user, Please login.</p>
+		<form action="." method="post">
+			{{ form.as_p }}
+			<input type="submit" value="Submit" />
+		</form>
+{% endif %}
+
+	</div>
+	</div>
+	</div>
+   </body>
+</html>

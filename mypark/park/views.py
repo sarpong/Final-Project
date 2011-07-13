@@ -32,24 +32,6 @@ def loc_list(request):
 def purchase_spots(request, loc_id):
 	loc = Location.objects.get(pk=loc_id)
 	purchases = Purchase.objects.filter(location=loc)
-	nowTime = time.time()
-	no_available = loc.no_available
-	for purchase in purchases:
-		print purchase.date
-		startTime = mktime(purchase.date.timetuple())
-		endTime = startTime + 60*60*purchase.duration
-<<<<<<< HEAD
-#		if nowTime == endTime - startTime:
-#			no_available -= 1
-=======
-
-		if nowTime == endTime - startTime:
-			no_available -= 1
-		print purchase.duration
-		print
-		print startTime, endTime
-
->>>>>>> 0ce7b843721a261f8658aa6689af25934b7185b4
 	if request.method == 'POST':
 		form = PurchaseForm(request.POST)
 		if form.is_valid():

@@ -1,15 +1,67 @@
 {% extends 'park/base.html' %}
 {%block content %}
-<style type="text/css">
-a.un_img_link {
+
+	<div><a href='/park/list'>Purchase a parking space</a></div>
+	<div><a href='/park/search'>Search</a></div>
+	<div><a href='/park/contactus'>Contact Us</a></div>
+
+<style text="text/css">
+.table_view.volvo {
+}
+.table_view {
+}
+ul, ol {
     display: block;
-    height: 68px;
+}
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+.table_view.volvo .item {
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    background: -moz-linear-gradient(center top , #FFFFFF 54%, #F5F5F5 100%) repeat scroll 0 0 transparent;
+    border: medium none;
+    margin: 6px 10px;
+}
+.table_view .item {
+    border-width: 0 0 1px;
+}
+.table_view li, .button a, .button div {
+    border: 1px solid #CCCCCC;
+}
+li {
+    list-style: none outside none;
+}
+
+.category_head {
+font-size: 30px;
+color: #5E5E5E;
+line-height:55px;
+
+}
+.catwrapper {
+height: 60px;	
+margin: 0 0 0 30px;
 }
 </style>
-	<ul>
-	<div><li><a class="un_img_link" href='/park/list'>Purchase a parking space</a></li></div>
-	<div><li><a class="un_img_link" href='/park/search'>Search</a></li></div>
-	<div><li><a class="un_img_link" href='/park/contactus'>Contact Us</a></li></div>
-	</ul>
+
+                        <ul class="table_view volvo">
+                            <li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">blah</span></div>
+                            </li>
+<li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">blah</span></div>
+                            </li>
+<li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">blah</span></div>
+                            </li>
+<li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">blah</span></div>
+                            </li>
+<li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">blah</span></div>
+                            </li>
+                        </ul>
 {% endblock %}
 
