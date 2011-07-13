@@ -38,14 +38,13 @@ def purchase_spots(request, loc_id):
 		print purchase.date
 		startTime = mktime(purchase.date.timetuple())
 		endTime = startTime + 60*60*purchase.duration
-<<<<<<< HEAD
+
 		if nowTime == endTime - startTime:
 			no_available -= 1
-=======
 		print purchase.duration
 		print
 		print startTime, endTime
->>>>>>> e6214ae47cffed1aa154fd73570d417e2d8ba57c
+
 	if request.method == 'POST':
 		purchase = Purchase(location=loc)
 		form = PurchaseForm(request.POST, instance=purchase)
