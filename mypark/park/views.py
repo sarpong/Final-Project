@@ -13,7 +13,7 @@ import time
 class PurchaseForm(ModelForm):
 	class Meta:
 		model = Purchase
-		exclude = ['location']
+		exclude = ['user','location']
 
 class ContactForm(ModelForm):
 	class Meta:
@@ -38,30 +38,16 @@ def purchase_spots(request, loc_id):
 		print purchase.date
 		startTime = mktime(purchase.date.timetuple())
 		endTime = startTime + 60*60*purchase.duration
-<<<<<<< HEAD
-		if nowTime == endTime - startTime:
-			no_available -= 1
-=======
-		print purchase.duration
-		print
-		print startTime, endTime
->>>>>>> e6214ae47cffed1aa154fd73570d417e2d8ba57c
+#		if nowTime == endTime - startTime:
+#			no_available -= 1
 	if request.method == 'POST':
-		purchase = Purchase(location=loc)
-		form = PurchaseForm(request.POST, instance=purchase)
-
+		form = PurchaseForm(request.POST)
 		if form.is_valid():
-			print form
-
 			form.save()
-
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
 	else:
 		form = PurchaseForm()
 	t = loader.get_template('park/purchase.html')
-	print 'hello'
-	print type(request.user.userprofile)
-	print 'hello'
 	c = Context({'form':form.as_p(),'location':loc.location, 'user':request.user.userprofile.name, 'email':request.user.userprofile.email, 'phone':request.user.userprofile.phone})
 	return HttpResponse(t.render(c))
 

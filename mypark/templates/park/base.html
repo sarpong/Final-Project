@@ -3,16 +3,13 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-
-	<title>Parking Space</title>
-
 <style type="text/css">
 body
 {
 background-color:#000000;
 width:100%;
 height:100%;
-font-family:"Verdana";
+font-family:"Arial";
 }
 h1
 {
@@ -21,6 +18,7 @@ text-align:center;
 }
 a
 {
+vertical-align:center;
 text-align:center;
 }
 
@@ -33,39 +31,47 @@ div {
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
     background: -moz-linear-gradient(center top , #E2E2E2, #FFFFFF) repeat scroll 0 0 transparent;
-    border-color: #FFFFFF #FFFFFF #D1D1D1;
+    border-color: #FFCC00 #FFCC00 #FFCC00;
     border-style: solid;
     border-width: 1px;
-    color: #D81209;
+    color: brown;
     font-size: 16px;
     font-weight: bold;
     height: auto;
-
+}
+.un_home_title {
+    background: -moz-linear-gradient(center top , #015294, #00335D) repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    font-size: small;
+	text-align:left;
+    padding: 3px 5px;
+}
+.un_home_pad {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: -moz-linear-gradient(center top , #FBF6F6, #E5E2E2) repeat scroll 0 0 transparent;
+    padding: 5px;
+}
+div.un_btm_dashed {
+    border-bottom: 1px dashed #A5BDD5;
 }
 </style>
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<link rel='stylesheet' href='base.css' type='test/css' />
 	<title>Smart Park</title>
-
   </head>
   <body>
 
-<<<<<<< HEAD
 	<h1><a target="_top" href="http://www.flamingtext.com/" ><img src="http://blog.flamingtext.com/blog/2011/07/13/flamingtext_com_1310547125_28500.png" border="0" alt="Image by FlamingText.com" title="Image by FlamingText.com"></a>
-=======
-<div class="moduleTab">
-        <div class="tabText"><a href="park/list"></a></div>
-        <div class="tabControls"></div>
-        <div class="clear"></div>
-    </div>
-	<h1><a target="_top" href="http://www.flamingtext.com/" ><img src="http://blog.flamingtext.com/blog/2011/07/12/flamingtext_com_1310477271_17322.png" border="0"></a>
->>>>>>> e6214ae47cffed1aa154fd73570d417e2d8ba57c
 <br/>
 </h1>
 	<div id="content">
+	<div class="un_btm_dashed">
+	<div class="un_home_title">Contents</div>
 	{% block content %}
 	{% endblock %}
+	</div>
+	</div>
 	</div>
    </body>
 </html>

@@ -1,6 +1,6 @@
 {% extends 'park/base.html' %}
 {%block content %}
 {% for loc in loc_list %}
-	<a href='/park/purchase/{{loc.id}}'>{{ loc }}</a><br/>
+	<a class="un_img_link" href='/park/purchase/{{loc.id}}'>{{ loc }}</a><br/>
 {% endfor %}
 {% endblock %}

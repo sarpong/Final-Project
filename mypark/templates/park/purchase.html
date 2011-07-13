@@ -1,12 +1,26 @@
 {% extends "park/base.html"%}
 {% block content %}
+<style type="text/css">
+a.un_img_link {
+    display: block;
+    height: 68px;
+}
+h3{
+font-family:"Arial";
+color:#0033FF;
+font-size:25px;
+}
+input{
+font-family:"Arial";
+}
+</style>
 	<ul>
 	<h3>Purchase a parking space</h3>
 	
-	  <div>User: 		 {{ user }}</div>
-	  <div>Location:	 {{ location }}</div>
+	  <div>User:         {{ user }}</div>
+	  <div>Location:     {{ location }}</div>
 	  <div>Phone number: {{ phone }}</div>
-	  <div>Email:	 {{ email }}</div>
+	  <div>Email:        {{ email }}</div>
 	  <div>
 	  		<form method='post' action="">
 				{{ form }}
