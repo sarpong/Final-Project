@@ -1,12 +1,20 @@
 {% extends "park/base.html" %}
 {% block content %}
-
-	<div>Thank you for patronising our service.</div><br/>
- 	<div>Name: {{ name }}</div>
-    <div>Location assigned: {{ location }}</div>
-	<div>Space assigned: {{ spaces }}</div>
-	<div>Duration: {{ duration }} hours</div>
-	<div>Date of Purchase: {{ date }}</div>
-	<div>Time of Purchase: {{ time }} </div>
+{% if logged_in %}
+	<div style="font-family: Verdana; color: #0000FF; font-size:20px;">Thank you for patronising our service.</div><br/>
+ 	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Name: {{ name }}</div>
+    <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Location assigned: {{ location }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Space assigned: {{ spaces }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Duration: {{ duration }} hours</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Date of Purchase: {{ date }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Time of Purchase: {{ time }} </div>
+{% else %}
+	<div style="font-family: Verdana; color: #0000FF; font-size:20px;">Thank you for patronising our service.</div><br/>
+    <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Location assigned: {{ location }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Space assigned: {{ spaces }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Duration: {{ duration }} hours</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Date of Purchase: {{ date }}</div>
+	<div style="font-family: Verdana; color: #0000FF; font-size:15px;">Time of Purchase: {{ time }} </div>
+{% endif %}
 {%endblock%}
 

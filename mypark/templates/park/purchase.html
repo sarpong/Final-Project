@@ -16,17 +16,27 @@ font-family:"Arial";
 </style>
 	<ul>
 	<h3>Purchase a parking space</h3>
-	
-	  <div>User:         {{ user }}</div>
-	  <div>Location:     {{ location }}</div>
-	  <div>Phone number: {{ phone }}</div>
-	  <div>Email:        {{ email }}</div>
-	  <div>
+{% if logged_in %}
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">User:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ user }}</div>
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ location }}</div>
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Phone number:&nbsp;&nbsp;{{ phone }}</div>
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ email }}</div>
+	  <div style="font-family: Verdana; color: #0000FF; font-size:10px;">
 	  		<form method='post' action="">
 				{{ form }}
-				<input type='submit' name='Submit'>
+				<input style="font-family: Verdana; color: #8B008B; font-size:15px;" type='submit' name='Submit'>
 			</form>
 	  </div>
+{% else %}
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ location }}</div>
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">
+	  <div style="font-family: Verdana; color: #0000FF; font-size:15px;">
+	  		<form method='post' action="">
+				{{ form }}
+				<input style="font-family: Verdana; color: #8B008B; font-size:15px;" type='submit' name='Submit'>
+			</form>
+	  </div>
+{% endif %}
 	</ul>
 {% endblock %}
 

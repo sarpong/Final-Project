@@ -1,6 +1,10 @@
 {% extends 'park/base.html' %}
 {%block content %}
+<ul class="table_view volvo">
 {% for loc in loc_list %}
-	<a class="un_img_link" href='/park/purchase/{{loc.id}}'>{{ loc }}</a><br/>
+                            <a href="/park/purchase/{{ loc.id }}"><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">{{ loc }}</span></div>
+                            </li></a>
 {% endfor %}
+</ul>
 {% endblock %}

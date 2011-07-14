@@ -32,29 +32,8 @@ def loc_list(request):
 def purchase_spots(request, loc_id):
 	loc = Location.objects.get(pk=loc_id)
 	purchases = Purchase.objects.filter(location=loc)
-<<<<<<< HEAD
-	if request.method == 'POST':
-		form = PurchaseForm(request.POST)
-=======
-	nowTime = time.time()
-	no_available = loc.no_available
-	for purchase in purchases:
-		print purchase.date
-		startTime = mktime(purchase.date.timetuple())
-		endTime = startTime + 60*60*purchase.duration
-
-#		if nowTime == endTime - startTime:
-#			no_available -= 1
-
-		if nowTime == endTime - startTime:
-			no_available -= 1
-		print purchase.duration
-		print
-		print startTime, endTime
-
 	if request.method == 'POST': 
 		form = PurchaseForm(request.POST,instance=purchase)
->>>>>>> 84a323388e3e3327c01ca71d867514b539de48e8
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))

@@ -1,67 +1,43 @@
 {% extends 'park/base.html' %}
 {%block content %}
-
-	<div><a href='/park/list'>Purchase a parking space</a></div>
-	<div><a href='/park/search'>Search</a></div>
-	<div><a href='/park/contactus'>Contact Us</a></div>
-
-<style text="text/css">
-.table_view.volvo {
-}
-.table_view {
-}
-ul, ol {
-    display: block;
-}
-ul, ol, li {
-    margin: 0;
-    padding: 0;
-}
-
-.table_view.volvo .item {
-    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-    background: -moz-linear-gradient(center top , #FFFFFF 54%, #F5F5F5 100%) repeat scroll 0 0 transparent;
-    border: medium none;
-    margin: 6px 10px;
-}
-.table_view .item {
-    border-width: 0 0 1px;
-}
-.table_view li, .button a, .button div {
-    border: 1px solid #CCCCCC;
-}
-li {
-    list-style: none outside none;
-}
-
-.category_head {
-font-size: 30px;
-color: #5E5E5E;
-line-height:55px;
-
-}
-.catwrapper {
-height: 60px;	
-margin: 0 0 0 30px;
-}
-</style>
-
-                        <ul class="table_view volvo">
-                            <li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">blah</span></div>
-                            </li>
-<li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">blah</span></div>
-                            </li>
-<li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">blah</span></div>
-                            </li>
-<li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">blah</span></div>
-                            </li>
-<li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">blah</span></div>
-                            </li>
+{% if logged_in %}
+                        <div class="table_view volvo">
+		<a style="text-align:rignt; vertical-text-align:text-top; margin-right=1px;" href='/reg/login'><div class="item" style="display:block; width:70px; float: left">
+								<div class="catwrapper" style="margin:0 0 0 10px"><span class="category_head">Logout</span></div>
+                            </div></a>
+</div>
+                        <ul class="table_view volvo" style="clear:both">
+                            <a href="/park/list"><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Purchase a Parking Space</span></div>
+                            </li></a>
+<a href='/park/search'><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Search for a Parking Space</span></div>
+                            </li></a>
+<a href='/park/contactus'><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Contact Us</span></div>
+                            </li></a>
                         </ul>
+{% else %}
+                        <div class="table_view volvo">
+		<a style="text-align:rignt; vertical-text-align:text-top; margin-right=1px;" href='/reg/login'><div class="item" style="display:block; width:70px; float: left">
+								<div class="catwrapper" style="margin:0 0 0 10px"><span class="category_head">Login</span></div>
+                            </div></a>
+		<a style="text-align:rignt; vertical-text-align:text-top; margin-right=1px;" href='/reg/signup'><div class="item" style="display:block; width:100px; float:right">
+								<div class="catwrapper" style="margin:0 0 0 10px"><span class="category_head">Sign Up</span></div>
+                            </div></a>
+</div>
+                        <ul class="table_view volvo" style="clear:both">
+                            <a href="/park/list"><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Purchase a Parking Space</span></div>
+                            </li></a>
+<a href='/park/search'><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Search for a Parking Space</span></div>
+                            </li></a>
+<a href='/park/contactus'><li class="item" style="display:block">
+								<div class="catwrapper"><span class="category_head">Contact Us</span></div>
+                            </li></a>
+                        </ul>
+
+{% endif %}
 {% endblock %}
 

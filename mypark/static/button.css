@@ -1,9 +1,5 @@
-{% extends "park/base.html" %}
-{%  block content %}
-<style text="text/css">
 .table_view.volvo {
-}
-.table_view {
+height: 50px;
 }
 ul, ol {
     display: block;
@@ -11,7 +7,6 @@ ul, ol {
 ul, ol, li {
     margin: 0;
     padding: 0;
-	background-color: gold;
 }
 
 .table_view.volvo .item {
@@ -33,20 +28,10 @@ li {
 .category_head {
 font-size: 20px;
 color: purple;
-line-height:27px;
+line-height:45px;
 }
 .catwrapper {
-height: 30px;	
+height: 50px;	
 margin: 0 0 0 30px;
 }
-</style>
-
-<ul class="table_view volvo">
-  {% for found in loc_list %}
-                            <a href="/park/purchase/{{ found.id }}"><li class="item" style="display:block">
-								<div class="catwrapper"><span class="category_head">{{ found }}: &nbsp;&nbsp;&nbsp;&nbsp;{{ found.no_available }} parking spaces</span></div>
-                            </li></a>
-  {% endfor %}   
-</ul>
-{% endblock %}
 
