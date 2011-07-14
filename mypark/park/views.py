@@ -32,10 +32,10 @@ def loc_list(request):
 def purchase_spots(request, loc_id):
 	loc = Location.objects.get(pk=loc_id)
 	purchases = Purchase.objects.filter(location=loc)
-<<<<<<< HEAD
+
 	if request.method == 'POST': 
 		form = PurchaseForm(request.POST,instance=purchase)
-=======
+
 
 	if request.method == 'POST':
 		form = PurchaseForm(request.POST)
@@ -58,7 +58,7 @@ def purchase_spots(request, loc_id):
 	if request.method == 'POST': 
 		form = PurchaseForm(request.POST,instance=purchase)
 
->>>>>>> b70713d4b2621cf215ff6c555d2a1f9db5b6e67a
+
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/park/confirmation/'+str(purchase.id))
